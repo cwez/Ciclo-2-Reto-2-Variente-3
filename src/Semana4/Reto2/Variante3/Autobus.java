@@ -59,7 +59,7 @@ public class Autobus extends Vehiculo {
     public void gestionarMarcha(){
         if(this.isEnMarcha() && this.puertaAbierta){
             setEnMarcha(!isEnMarcha());
-        }
+        } //prueba
     }
     
     public static double calcularPasaje(int estrato){
