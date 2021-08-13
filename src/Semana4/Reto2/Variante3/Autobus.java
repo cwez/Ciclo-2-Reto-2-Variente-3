@@ -49,6 +49,9 @@ public class Autobus extends Vehiculo {
         if(this.puertaAbierta && this.isEnMarcha()){
             this.puertaAbierta = true;
         }
+        else{
+            this.puertaAbierta = false;
+        }
         
     }
     
