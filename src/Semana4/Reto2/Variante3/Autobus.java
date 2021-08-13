@@ -37,7 +37,7 @@ public class Autobus extends Vehiculo {
     public void recogerPasajero(int estrato){
         //analizar logica y sintaxis
         if(isEnMarcha() && !isPuertaAbierta()){
-            if(getnPasajeros() <= getnMaximoPasajeros()){
+            if(getnPasajeros() < getnMaximoPasajeros()){
                 setnPasajeros(getnPasajeros() + 1);
                 setCantidadDinero(getCantidadDinero() + this.calcularPasaje(estrato));
             }
