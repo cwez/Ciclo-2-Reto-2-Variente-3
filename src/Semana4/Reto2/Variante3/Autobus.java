@@ -43,10 +43,6 @@ public class Autobus extends Vehiculo {
             }
         }
         
-        /*this.setCantidadDinero() ++ Autobus.calcularPasaje(estrato); //¿this.?
-        if(this.getnPasajeros() <= this.getnMaximoPasajeros()){
-            this.getnPasajeros() += 1;
-        }*/
     }
     
     public void gestionarPuerta(){
