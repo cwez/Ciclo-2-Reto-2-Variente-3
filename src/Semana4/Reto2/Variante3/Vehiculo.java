@@ -146,7 +146,7 @@ public abstract class Vehiculo {
         e igualados a = false*/
         //si se debe colocar
         
-        else if(!this.motorEncendido){
+        else {
             this.motorEncendido = false;
             this.aireAcondicionadoActivado = false;
             this.wifiEncendido = false;

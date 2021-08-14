@@ -59,12 +59,15 @@ public class Autobus extends Vehiculo {
     public void gestionarMarcha(){
         if(this.isEnMarcha() && this.puertaAbierta){
             setEnMarcha(!isEnMarcha());
-        } 
+        }
+        else{
+            setEnMarcha(isEnMarcha());
+        }
     }
     
     public static double calcularPasaje(int estrato){
         int valorPasaje = 0;
-        if(0 >= estrato && estrato <= 2 ){
+        if(estrato == 0 || estrato == 1 || estrato == 2){
             valorPasaje = 1500;
         }
         else if(estrato == 3 || estrato == 4 ){

@@ -15,10 +15,10 @@ public class Taxi extends Vehiculo{
     private boolean segurosActivados;
     
     //Constructor especial
-    public Taxi(String nombreConductor, int nMaximoPasajeros){
+    public Taxi(String nombreConductor){
         
-        super(nombreConductor, nMaximoPasajeros);
-        //setnMaximoPasajeros(1);
+        super(nombreConductor, 1);
+        
         
         this.distanciaRecorrida = 0;
         this.segurosActivados = false;
@@ -56,6 +56,7 @@ public class Taxi extends Vehiculo{
         setCantidadDinero(getCantidadDinero() - this.calcularPasaje());
     }
     
+    @Override
     public void dejarPasajero(){
         if(getnPasajeros() > 0 && isEnMarcha() && segurosActivados){
             setnPasajeros(getnPasajeros() - 1);
@@ -65,9 +66,9 @@ public class Taxi extends Vehiculo{
     }
     
     public void recogerPasajero(){
-        if(isEnMarcha() && this.segurosActivados && getnPasajeros() < getnMaximoPasajeros()){
+        //if(isEnMarcha() && this.segurosActivados && getnPasajeros() < getnMaximoPasajeros()){
             setnPasajeros(getnPasajeros() + 1);
-        }
+        //}
     }
     
     @Override
@@ -80,9 +81,40 @@ public class Taxi extends Vehiculo{
         }
     }
     
+    @Override
     public void moverDerecha(double d){
         if(!isEnMarcha() && !this.segurosActivados){
             setLocalizacionX(getLocalizacionX() + d);
+            if(getnPasajeros() > 0){
+                distanciaRecorrida += d;
+            }
+        }
+    }
+    
+    @Override
+    public void moverIzquierda(double d){
+        if(!isEnMarcha() && !this.segurosActivados){
+            setLocalizacionX(getLocalizacionX() - d);
+            if(getnPasajeros() > 0){
+                distanciaRecorrida += d;
+            }
+        }
+    }
+    
+    @Override
+    public void moverArriba(double d){
+        if(!isEnMarcha() && !this.segurosActivados){
+            setLocalizacionY(getLocalizacionY() + d);
+            if(getnPasajeros() > 0){
+                distanciaRecorrida += d;
+            }
+        }
+    }
+    
+    @Override
+    public void moverAbajo(double d){
+        if(!isEnMarcha() && !this.segurosActivados){
+            setLocalizacionY(getLocalizacionY() - d);
             if(getnPasajeros() > 0){
                 distanciaRecorrida += d;
             }
@@ -94,6 +126,13 @@ public class Taxi extends Vehiculo{
         vPasaje = 3000 + (2300 * distanciaRecorrida);
         return vPasaje;
     }
-
     
+    public void gestionarSeguros(){
+        if(isEnMarcha() && !this.segurosActivados){
+            this.segurosActivados = false; 
+        }
+        else{
+            this.segurosActivados = !this.segurosActivados;
+        }
+    }
 }
