@@ -50,42 +50,42 @@ public class Taxi extends Vehiculo{
     
     public void presionarBotonPanico(){
         reiniciarTaximetro();
-        setEnMarcha(false);
+        super.setEnMarcha(false);
         segurosActivados = false;
         dejarPasajero();
-        setCantidadDinero(getCantidadDinero() - this.calcularPasaje());
+        super.setCantidadDinero(super.getCantidadDinero() - this.calcularPasaje());
     }
     
     @Override
     public void dejarPasajero(){
-        if(getnPasajeros() > 0 && isEnMarcha() && segurosActivados){
-            setnPasajeros(getnPasajeros() - 1);
+        if(super.getnPasajeros() > 0 && super.isEnMarcha() == false && segurosActivados == false){
+            super.setnPasajeros(super.getnPasajeros() - 1);
             reiniciarTaximetro();
-            setCantidadDinero(getCantidadDinero() + this.calcularPasaje());
+            super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje());
         }
     }
     
     public void recogerPasajero(){
-        //if(isEnMarcha() && this.segurosActivados && getnPasajeros() < getnMaximoPasajeros()){
-            setnPasajeros(getnPasajeros() + 1);
+        //if(super.isEnMarcha() && this.segurosActivados && super.getnPasajeros() < super.getnMaximoPasajeros()){
+            super.setnPasajeros(super.getnPasajeros() + 1);
         //}
     }
     
     @Override
     public void gestionarMarcha() {
-        if(isEnMarcha() && !this.segurosActivados){
-            setEnMarcha(true);
+        if(super.isEnMarcha() == false && this.segurosActivados == true){
+            super.setEnMarcha(true);
         }
         else{
-            setEnMarcha(false);
+            super.setEnMarcha(false);
         }
     }
     
     @Override
     public void moverDerecha(double d){
-        if(!isEnMarcha() && !this.segurosActivados){
-            setLocalizacionX(getLocalizacionX() + d);
-            if(getnPasajeros() > 0){
+        if(super.isEnMarcha() == true && this.segurosActivados == true){
+            super.setLocalizacionX(super.getLocalizacionX() + d);
+            if(super.getnPasajeros() > 0){
                 distanciaRecorrida += d;
             }
         }
@@ -93,9 +93,9 @@ public class Taxi extends Vehiculo{
     
     @Override
     public void moverIzquierda(double d){
-        if(!isEnMarcha() && !this.segurosActivados){
-            setLocalizacionX(getLocalizacionX() - d);
-            if(getnPasajeros() > 0){
+        if(super.isEnMarcha() == true && this.segurosActivados == true){
+            super.setLocalizacionX(super.getLocalizacionX() - d);
+            if(super.getnPasajeros() > 0){
                 distanciaRecorrida += d;
             }
         }
@@ -103,9 +103,9 @@ public class Taxi extends Vehiculo{
     
     @Override
     public void moverArriba(double d){
-        if(!isEnMarcha() && !this.segurosActivados){
-            setLocalizacionY(getLocalizacionY() + d);
-            if(getnPasajeros() > 0){
+        if(super.isEnMarcha() == true && this.segurosActivados == true){
+            super.setLocalizacionY(super.getLocalizacionY() + d);
+            if(super.getnPasajeros() > 0){
                 distanciaRecorrida += d;
             }
         }
@@ -113,9 +113,9 @@ public class Taxi extends Vehiculo{
     
     @Override
     public void moverAbajo(double d){
-        if(!isEnMarcha() && !this.segurosActivados){
-            setLocalizacionY(getLocalizacionY() - d);
-            if(getnPasajeros() > 0){
+        if(super.isEnMarcha() && this.segurosActivados == true){
+            super.setLocalizacionY(super.getLocalizacionY() - d);
+            if(super.getnPasajeros() > 0){
                 distanciaRecorrida += d;
             }
         }
@@ -128,11 +128,11 @@ public class Taxi extends Vehiculo{
     }
     
     public void gestionarSeguros(){
-        if(isEnMarcha() && !this.segurosActivados){
+        if(super.isEnMarcha() == false && this.segurosActivados == true){
             this.segurosActivados = false; 
         }
         else{
-            this.segurosActivados = !this.segurosActivados;
+            this.segurosActivados = true;
         }
     }
 }

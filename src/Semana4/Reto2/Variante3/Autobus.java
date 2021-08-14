@@ -36,17 +36,15 @@ public class Autobus extends Vehiculo {
     
     public void recogerPasajero(int estrato){
         //analizar logica y sintaxis
-        if(isEnMarcha() && !isPuertaAbierta()){
-            if(getnPasajeros() < getnMaximoPasajeros()){
-                setnPasajeros(getnPasajeros() + 1);
-                setCantidadDinero(getCantidadDinero() + this.calcularPasaje(estrato));
-            }
+        if(this.puertaAbierta == true && super.isEnMarcha() == false && super.getnPasajeros() < super.getnMaximoPasajeros()){
+            super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje(estrato));
+            super.setnPasajeros(super.getnPasajeros() + 1);
         }
         
     }
     
     public void gestionarPuerta(){
-        if(this.puertaAbierta && this.isEnMarcha()){
+        if(this.puertaAbierta == false && super.isEnMarcha() == false){
             this.puertaAbierta = true;
         }
         else{
@@ -57,11 +55,11 @@ public class Autobus extends Vehiculo {
     
     @Override
     public void gestionarMarcha(){
-        if(this.isEnMarcha() && this.puertaAbierta){
-            setEnMarcha(!isEnMarcha());
+        if(super.isEnMarcha() == true && this.puertaAbierta == false){
+            setEnMarcha(true);
         }
         else{
-            setEnMarcha(isEnMarcha());
+            setEnMarcha(false);
         }
     }
     
