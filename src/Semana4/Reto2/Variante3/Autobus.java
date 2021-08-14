@@ -75,7 +75,5 @@ public class Autobus extends Vehiculo {
             valorPasaje = 3000;
         }
         return valorPasaje;
-    }
-    
-    
-}
+    }  
+} // terminado :')
