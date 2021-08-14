@@ -55,16 +55,16 @@ public class Autobus extends Vehiculo {
     
     @Override
     public void gestionarMarcha(){
-        if(super.isEnMarcha() == true && this.puertaAbierta == false){
-            setEnMarcha(true);
+        if(super.isEnMarcha() == true && this.puertaAbierta == false){ // colocar en netbeans "&& super.isMotorEncendido() == true"
+            super.setEnMarcha(true);
         }
         else{
-            setEnMarcha(false);
+            super.setEnMarcha(false);
         }
     }
     
     public static double calcularPasaje(int estrato){
-        int valorPasaje = 0;
+        double valorPasaje = 0;
         if(estrato == 0 || estrato == 1 || estrato == 2){
             valorPasaje = 1500;
         }

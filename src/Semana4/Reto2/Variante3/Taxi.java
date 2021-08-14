@@ -51,7 +51,7 @@ public class Taxi extends Vehiculo{
     public void presionarBotonPanico(){
         reiniciarTaximetro();
         super.setEnMarcha(false);
-        segurosActivados = false;
+        this.segurosActivados = false;
         dejarPasajero();
         super.setCantidadDinero(super.getCantidadDinero() - this.calcularPasaje());
     }
@@ -59,16 +59,17 @@ public class Taxi extends Vehiculo{
     @Override
     public void dejarPasajero(){
         if(super.getnPasajeros() > 0 && super.isEnMarcha() == false && segurosActivados == false){
+            super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje());
             super.setnPasajeros(super.getnPasajeros() - 1);
             reiniciarTaximetro();
-            super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje());
+            
         }
     }
     
     public void recogerPasajero(){
-        //if(super.isEnMarcha() && this.segurosActivados && super.getnPasajeros() < super.getnMaximoPasajeros()){
+        if(super.isEnMarcha() && this.segurosActivados && super.getnPasajeros() < super.getnMaximoPasajeros()){
             super.setnPasajeros(super.getnPasajeros() + 1);
-        //}
+        }
     }
     
     @Override
@@ -83,47 +84,47 @@ public class Taxi extends Vehiculo{
     
     @Override
     public void moverDerecha(double d){
-        if(super.isEnMarcha() == true && this.segurosActivados == true){
+        if(super.isEnMarcha() == true ){ // colocar en IDE && this.segurosActivados == true
             super.setLocalizacionX(super.getLocalizacionX() + d);
             if(super.getnPasajeros() > 0){
-                distanciaRecorrida += d;
+                this.distanciaRecorrida += d;
             }
         }
     }
     
     @Override
     public void moverIzquierda(double d){
-        if(super.isEnMarcha() == true && this.segurosActivados == true){
+        if(super.isEnMarcha() == true){ //colocar en IDE  && this.segurosActivados == true
             super.setLocalizacionX(super.getLocalizacionX() - d);
             if(super.getnPasajeros() > 0){
-                distanciaRecorrida += d;
+                this.distanciaRecorrida += d;
             }
         }
     }
     
     @Override
     public void moverArriba(double d){
-        if(super.isEnMarcha() == true && this.segurosActivados == true){
+        if(super.isEnMarcha() == true){ // colocar en IDE && this.segurosActivados == true
             super.setLocalizacionY(super.getLocalizacionY() + d);
             if(super.getnPasajeros() > 0){
-                distanciaRecorrida += d;
+                this.distanciaRecorrida += d;
             }
         }
     }
     
     @Override
     public void moverAbajo(double d){
-        if(super.isEnMarcha() && this.segurosActivados == true){
+        if(super.isEnMarcha()){// colocar en IDE  && this.segurosActivados == true
             super.setLocalizacionY(super.getLocalizacionY() - d);
             if(super.getnPasajeros() > 0){
-                distanciaRecorrida += d;
+                this.distanciaRecorrida += d;
             }
         }
     }
     
     public double calcularPasaje(){
         double vPasaje = 0;
-        vPasaje = 3000 + (2300 * distanciaRecorrida);
+        vPasaje = 3000 + (2300 * this.getDistanciaRecorrida());
         return vPasaje;
     }
     
