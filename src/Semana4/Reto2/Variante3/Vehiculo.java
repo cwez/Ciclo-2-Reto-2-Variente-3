@@ -183,4 +183,4 @@ public abstract class Vehiculo {
             this.localizacionY = this.localizacionY - d;
         }
     }
-}
+}// terminado :')
