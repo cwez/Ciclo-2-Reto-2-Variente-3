@@ -133,7 +133,7 @@ public class Taxi extends Vehiculo{
             this.segurosActivados = false; 
         }
         else{
-            this.segurosActivados = true;
+            this.segurosActivados = true; 
         }
     }
-}
+} // finalizado :')
